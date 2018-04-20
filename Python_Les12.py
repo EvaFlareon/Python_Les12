@@ -15,15 +15,13 @@ def all_files():
 
 
 def search_files(files, search_term):
+    new_list = []
     for file in files:
         if file.lower().find(search_term) == -1:
-            files.remove(file)
+            new_list.append(file)
         else:
             continue
-    if len(files) == 0:
-        print('Такой поиск ничего не дал')
-    print(files)
-    print('Всего файлов:', len(files))
+    return new_list
 
 
 def search():
@@ -33,7 +31,10 @@ def search():
         if user_search == 'exit':
             break
         else:
-            search_files(files, user_search)
+            files = search_files(files, user_search)
+            for file in files:
+                print(file)
+            print('Всего:', len(files))
 
 
 search()
